@@ -5,7 +5,7 @@ import (
 	"go-rest-api-boilerplate/src/commons/core"
 )
 
-var productHandler *ProductHandler
+var productHandler *SProductHandler
 
 func InitProductModule() {
 	productRepository := NewProductRepository(core.DB)

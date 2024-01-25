@@ -13,44 +13,44 @@ type IProductRepository interface {
 	Destroy(product Product) (Product, error)
 }
 
-// ProductRepository is the implementation of IProductRepository.
-type ProductRepository struct {
+// SProductRepository is the implementation of IProductRepository.
+type SProductRepository struct {
 	db *gorm.DB
 }
 
 // NewProductRepository creates a new instance of IProductRepository.
-func NewProductRepository(db *gorm.DB) *ProductRepository {
-	return &ProductRepository{db}
+func NewProductRepository(db *gorm.DB) *SProductRepository {
+	return &SProductRepository{db}
 }
 
 // FindAll retrieves all products from the database.
-func (r *ProductRepository) FindAll() ([]Product, error) {
+func (r *SProductRepository) FindAll() ([]Product, error) {
 	var products []Product
 	err := r.db.Find(&products).Error
 	return products, err
 }
 
 // FindByID retrieves a product by its ID from the database.
-func (r *ProductRepository) FindByID(ID int) (Product, error) {
+func (r *SProductRepository) FindByID(ID int) (Product, error) {
 	var product Product
 	err := r.db.First(&product, ID).Error
 	return product, err
 }
 
 // Create adds a new product to the database.
-func (r *ProductRepository) Create(product Product) (Product, error) {
+func (r *SProductRepository) Create(product Product) (Product, error) {
 	err := r.db.Create(&product).Error
 	return product, err
 }
 
 // Update modifies an existing product in the database.
-func (r *ProductRepository) Update(product Product) (Product, error) {
+func (r *SProductRepository) Update(product Product) (Product, error) {
 	err := r.db.Save(&product).Error
 	return product, err
 }
 
 // Destroy removes a product from the database by its ID.
-func (r *ProductRepository) Destroy(product Product) (Product, error) {
+func (r *SProductRepository) Destroy(product Product) (Product, error) {
 	err := r.db.Delete(&product).Error
 	return product, err
 }

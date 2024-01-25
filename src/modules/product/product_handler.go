@@ -6,16 +6,16 @@ import (
 	"strconv"
 )
 
-type ProductHandler struct {
+type SProductHandler struct {
 	productService IProductService
 }
 
-func NewProductHandler(productService IProductService) *ProductHandler {
-	return &ProductHandler{productService}
+func NewProductHandler(productService IProductService) *SProductHandler {
+	return &SProductHandler{productService}
 }
 
 // ShowProducts show
-func (h *ProductHandler) ShowProducts(c *gin.Context) {
+func (h *SProductHandler) ShowProducts(c *gin.Context) {
 	products, err := h.productService.FindAll()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -25,7 +25,7 @@ func (h *ProductHandler) ShowProducts(c *gin.Context) {
 }
 
 // ShowProduct show
-func (h *ProductHandler) ShowProduct(c *gin.Context) {
+func (h *SProductHandler) ShowProduct(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
@@ -42,7 +42,7 @@ func (h *ProductHandler) ShowProduct(c *gin.Context) {
 }
 
 // CreateProduct create
-func (h *ProductHandler) CreateProduct(c *gin.Context) {
+func (h *SProductHandler) CreateProduct(c *gin.Context) {
 	var product Product
 	if err := c.ShouldBindJSON(&product); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
@@ -59,7 +59,7 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 }
 
 // UpdateProduct handles the request to update a product.
-func (h *ProductHandler) UpdateProduct(c *gin.Context) {
+func (h *SProductHandler) UpdateProduct(c *gin.Context) {
 	// Extract product ID from the request params
 	productID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -74,7 +74,7 @@ func (h *ProductHandler) UpdateProduct(c *gin.Context) {
 		return
 	}
 
-	// Call ProductService's Update method
+	// Call SProductService's Update method
 	updatedProduct, err = h.productService.Update(productID, updatedProduct)
 	if err != nil {
 		// Handle the error, perhaps return an appropriate response to the client
@@ -87,14 +87,14 @@ func (h *ProductHandler) UpdateProduct(c *gin.Context) {
 }
 
 // DestroyProduct remove a data record
-func (h *ProductHandler) DestroyProduct(c *gin.Context) {
+func (h *SProductHandler) DestroyProduct(c *gin.Context) {
 	productID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
 		return
 	}
 
-	// Call ProductService's Destroy method
+	// Call SProductService's Destroy method
 	deletedProduct, err := h.productService.Destroy(productID)
 	if err != nil {
 		// Handle the error, perhaps return an appropriate response to the client

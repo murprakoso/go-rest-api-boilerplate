@@ -2,7 +2,7 @@ package product
 
 import "encoding/json"
 
-type ProductRequest struct {
+type SProductRequest struct {
 	Name        string      `json:"name" binding:"required"`
 	Description string      `json:"description" binding:"required"`
 	Qty         json.Number `json:"qty" binding:"required,number"`
