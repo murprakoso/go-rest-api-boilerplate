@@ -2,45 +2,41 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-rest-api-boilerplate/src/commons/core"
 	"go-rest-api-boilerplate/src/modules/product"
 )
 
 func Router() *gin.Engine {
+	// Create a new Gin router with default middleware
 	router := gin.Default()
 
-	//API Version
+	// API Version Grouping
 	v1 := router.Group("/v1")
-	//Route
+
+	// Default route
 	router.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Selamat datang!",
-		})
+		c.JSON(200, gin.H{"message": "Welcome to the API!"})
 	})
 
+	// API Version-specific route
 	v1.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Selamat datang! V1 API",
-		})
+		c.JSON(200, gin.H{"message": "Welcome to the V1 API!"})
 	})
 
-	v1.GET("/hello", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello, World!",
-		})
-	})
+	// List of imported modules (add new modules here)
+	//
+	// Imported Modules:
+	// - product
 
-	//productHandler
-	productRepository := product.NewProductRepository(core.DB)
-	productService := product.NewProductService(productRepository)
-	productHandler := product.NewProductHandler(productService)
+	// Import the product module
+	product.InitProductModule()
 
-	v1.GET("/product", productHandler.ShowProducts)
-	v1.GET("/product/:id", productHandler.ShowProduct)
-	v1.POST("/product", productHandler.CreateProduct)
-	v1.PUT("/product/:id", productHandler.UpdateProduct)
-	v1.DELETE("/product/:id", productHandler.DestroyProduct)
-	//product.RouterGroup(v1)
+	// List of imported and configured router groups (add new router groups here)
+	//
+	// Imported Router Groups:
+	// - product.SetProductRouterGroup(v1)
+
+	// Import and configure the product routes within the v1 group
+	product.SetProductRouterGroup(v1)
 
 	return router
 }
