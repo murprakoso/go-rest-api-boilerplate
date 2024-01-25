@@ -4,25 +4,27 @@ import (
 	"gorm.io/gorm"
 )
 
-// ProductRepository defines the interface for interacting with the product data.
-type ProductRepository interface {
+// IProductRepository defines the interface for interacting with the product data.
+type IProductRepository interface {
 	FindAll() ([]Product, error)
 	FindByID(ID int) (Product, error)
-	Create(product Product) (Product, error)
+	Create(productRequest ProductRequest) (Product, error)
+	Update(productRequest ProductRequest) (Product, error)
+	Destroy(ID int) error
 }
 
-// productRepository is the implementation of ProductRepository.
-type productRepository struct {
+// ProductRepository is the implementation of IProductRepository.
+type ProductRepository struct {
 	db *gorm.DB
 }
 
-// NewProductRepository creates a new instance of ProductRepository.
-func NewProductRepository(db *gorm.DB) *productRepository {
-	return &productRepository{db}
+// NewProductRepository creates a new instance of IProductRepository.
+func NewProductRepository(db *gorm.DB) *ProductRepository {
+	return &ProductRepository{db}
 }
 
 // FindAll retrieves all products from the database.
-func (r *productRepository) FindAll() ([]Product, error) {
+func (r *ProductRepository) FindAll() ([]Product, error) {
 	var products []Product
 	if err := r.db.Find(&products).Error; err != nil {
 		return nil, err
@@ -31,7 +33,7 @@ func (r *productRepository) FindAll() ([]Product, error) {
 }
 
 // FindByID retrieves a product by its ID from the database.
-func (r *productRepository) FindByID(ID int) (Product, error) {
+func (r *ProductRepository) FindByID(ID int) (Product, error) {
 	var product Product
 	if err := r.db.First(&product, ID).Error; err != nil {
 		return Product{}, err
@@ -40,9 +42,26 @@ func (r *productRepository) FindByID(ID int) (Product, error) {
 }
 
 // Create adds a new product to the database.
-func (r *productRepository) Create(product Product) (Product, error) {
-	if err := r.db.Create(&product).Error; err != nil {
+func (r *ProductRepository) Create(productRequest ProductRequest) (Product, error) {
+	product, err := r.db.Create(&productRequest).Error
+	//if err := r.db.Create(&productRequest).Error; err != nil {
+	//	return Product{}, err
+	//}
+	return product, nil
+}
+
+// Update modifies an existing product in the database.
+func (r *ProductRepository) Update(product Product) (Product, error) {
+	if err := r.db.Save(&product).Error; err != nil {
 		return Product{}, err
 	}
 	return product, nil
+}
+
+// Destroy removes a product from the database by its ID.
+func (r *ProductRepository) Destroy(ID int) error {
+	if err := r.db.Delete(&Product{}, ID).Error; err != nil {
+		return err
+	}
+	return nil
 }

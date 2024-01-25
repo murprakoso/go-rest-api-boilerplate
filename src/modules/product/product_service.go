@@ -1,33 +1,41 @@
 package product
 
-// ProductService defines the interface for product-related business logic.
-type ProductService interface {
+// IProductService defines the interface for product-related business logic.
+type IProductService interface {
 	FindAll() ([]Product, error)
 	FindByID(ID int) (Product, error)
 	Create(product Product) (Product, error)
+	Update(ID int, product Product) (Product, error)
+	Destroy(ID int) error
 }
 
-// productService is the implementation of ProductService.
-type productService struct {
-	productRepository ProductRepository
+// ProductService is the implementation of IProductService.
+type ProductService struct {
+	productRepository IProductRepository
 }
 
-// NewProductService creates a new instance of ProductService.
-func NewProductService(repo ProductRepository) *productService {
-	return &productService{repo}
+// NewProductService creates a new instance of IProductService.
+func NewProductService(productRepository IProductRepository) *ProductService {
+	return &ProductService{productRepository}
 }
 
 // FindAll retrieves all products.
-func (s *productService) FindAll() ([]Product, error) {
+func (s *ProductService) FindAll() ([]Product, error) {
 	return s.productRepository.FindAll()
 }
 
 // FindByID retrieves a product by its ID.
-func (s *productService) FindByID(ID int) (Product, error) {
+func (s *ProductService) FindByID(ID int) (Product, error) {
 	return s.productRepository.FindByID(ID)
 }
 
 // Create adds a new product.
-func (s *productService) Create(product Product) (Product, error) {
+func (s *ProductService) Create(product Product) (Product, error) {
 	return s.productRepository.Create(product)
+}
+
+// Update adds a new product.
+func (s *ProductService) Update(ID int, productRequest ProductRequest) (Product, error) {
+	//product, _ := s.productRepository.FindByID(ID)
+	return s.productRepository.Update(productRequest)
 }

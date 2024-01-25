@@ -2,7 +2,6 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-rest-api-boilerplate/src/commons/core"
 	"go-rest-api-boilerplate/src/modules/product"
 )
 
@@ -31,13 +30,14 @@ func Router() *gin.Engine {
 	})
 
 	//ProductHandler
-	productRepository := product.NewProductRepository(core.DB)
-	productService := product.NewProductService(productRepository)
-	productHandler := product.NewProductHandler(productService)
-
-	v1.GET("/product", productHandler.ShowProducts)
-	v1.GET("/product/:id", productHandler.ShowProduct)
-	v1.POST("/product", productHandler.CreateProduct)
+	//productRepository := product.NewProductRepository(core.DB)
+	//productService := product.NewProductService(productRepository)
+	//productHandler := product.NewProductHandler(productService)
+	//
+	//v1.GET("/product", productHandler.ShowProducts)
+	//v1.GET("/product/:id", productHandler.ShowProduct)
+	//v1.POST("/product", productHandler.CreateProduct)
+	product.RouterGroup(v1)
 
 	return router
 }
