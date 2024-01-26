@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fc907e9-b57d-40fe-a32c-dc5d772e7cd4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/commons/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/product/product_response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/product/product_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/product/product_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/product/product_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/product/product_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +54,17 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "/home/althea",
+    "last_opened_file_path": "/home/althea/GolandProjects/go-rest-api-boilerplate/src/modules/product",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/product" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>

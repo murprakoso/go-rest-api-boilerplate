@@ -21,7 +21,8 @@ func NewProductService(productRepository IProductRepository) *SProductService {
 
 // FindAll retrieves all products.
 func (s *SProductService) FindAll() ([]Product, error) {
-	return s.productRepository.FindAll()
+	products, err := s.productRepository.FindAll()
+	return products, err
 }
 
 // FindByID retrieves a product by its ID.

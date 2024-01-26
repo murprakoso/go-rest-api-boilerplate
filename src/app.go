@@ -17,12 +17,12 @@ func App() {
 	// Use the loaded configuration
 	gin.SetMode(gin.ReleaseMode)
 	fmt.Printf("Environment Mode: %s\n", config.EnvMode)
-	fmt.Printf("Port: %s\n", config.Port)
-	fmt.Printf("DB Host: %s\n", config.DBHost)
-	fmt.Printf("DB Port: %s\n", config.DBPort)
-	fmt.Printf("DB User: %s\n", config.DBUser)
-	fmt.Printf("DB Pass: %s\n", config.DBPass)
-	fmt.Printf("DB Name: %s\n", config.DBName)
+	//fmt.Printf("Port: %s\n", config.Port)
+	//fmt.Printf("DB Host: %s\n", config.DBHost)
+	//fmt.Printf("DB Port: %s\n", config.DBPort)
+	//fmt.Printf("DB User: %s\n", config.DBUser)
+	//fmt.Printf("DB Pass: %s\n", config.DBPass)
+	//fmt.Printf("DB Name: %s\n", config.DBName)
 
 	// Initialize the router
 	router := routers.Router()

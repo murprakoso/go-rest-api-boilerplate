@@ -14,7 +14,7 @@ func main() {
 	database.AutoMigration()
 
 	// Run the seeder to populate the database with initial data
-	database.Seeder()
+	//database.Seeder()
 
 	// Start the application
 	src.App()
