@@ -74,7 +74,7 @@ func (h *SProductHandler) CreateProduct(c *gin.Context) {
 		return
 	}
 
-	// Map the created product to a response format
+	// Created product to a response format
 	productResponse := NewProductDetailResponseFromEntity(createdProduct)
 
 	// Respond with the created product details
@@ -87,11 +87,7 @@ func (h *SProductHandler) CreateProduct(c *gin.Context) {
 // UpdateProduct handles the request to update a product.
 func (h *SProductHandler) UpdateProduct(c *gin.Context) {
 	// Extract product ID from the request params
-	productID, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
-		return
-	}
+	productID, _ := strconv.Atoi(c.Param("id"))
 
 	// Bind JSON request body to Product struct
 	var updatedProduct Product
@@ -101,14 +97,14 @@ func (h *SProductHandler) UpdateProduct(c *gin.Context) {
 	}
 
 	// Call SProductService's Update method
-	updatedProduct, err = h.productService.Update(productID, updatedProduct)
+	updatedProduct, err := h.productService.Update(productID, updatedProduct)
 	if err != nil {
 		// Handle the error, perhaps return an appropriate response to the client
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update product"})
 		return
 	}
 
-	// Map the created product to a response format
+	// Updated product to a response format
 	productResponse := NewProductDetailResponseFromEntity(updatedProduct)
 
 	// Handle the updated product, perhaps return it as a JSON response to the client
@@ -121,20 +117,22 @@ func (h *SProductHandler) UpdateProduct(c *gin.Context) {
 
 // DestroyProduct remove a data record
 func (h *SProductHandler) DestroyProduct(c *gin.Context) {
-	productID, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid product ID"})
-		return
-	}
+	productID, _ := strconv.Atoi(c.Param("id"))
 
 	// Call SProductService's Destroy method
 	deletedProduct, err := h.productService.Destroy(productID)
 	if err != nil {
 		// Handle the error, perhaps return an appropriate response to the client
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "Failed to delete product"})
 		return
 	}
 
+	// Updated product to a response format
+	productResponse := NewProductDetailResponseFromEntity(deletedProduct)
+
 	// Handle the deleted product, perhaps return it as a JSON response to the client
-	c.JSON(http.StatusOK, deletedProduct)
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"data":    productResponse,
+	})
 }

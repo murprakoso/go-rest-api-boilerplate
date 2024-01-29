@@ -2,6 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
+	"go-rest-api-boilerplate/src/commons/middleware"
 	"go-rest-api-boilerplate/src/modules/product"
 )
 
@@ -11,6 +12,9 @@ func Router() *gin.Engine {
 
 	// API Version Grouping
 	v1 := router.Group("/v1")
+
+	// Mendaftarkan middleware ke grup router untuk validasi ID parameter
+	v1.Use(middleware.ValidateIDParamMiddleware("id"))
 
 	// Default route
 	router.GET("/", func(c *gin.Context) {
