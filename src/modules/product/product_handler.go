@@ -87,17 +87,17 @@ func (h *SProductHandler) CreateProduct(c *gin.Context) {
 // UpdateProduct handles the request to update a product.
 func (h *SProductHandler) UpdateProduct(c *gin.Context) {
 	// Extract product ID from the request params
-	productID, _ := strconv.Atoi(c.Param("id"))
+	ID, _ := strconv.Atoi(c.Param("id"))
 
 	// Bind JSON request body to Product struct
-	var updatedProduct Product
-	if err := c.BindJSON(&updatedProduct); err != nil {
+	var productRequest SProductRequest
+	if err := c.BindJSON(&productRequest); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
 		return
 	}
 
 	// Call SProductService's Update method
-	updatedProduct, err := h.productService.Update(productID, updatedProduct)
+	updatedProduct, err := h.productService.Update(ID, productRequest)
 	if err != nil {
 		// Handle the error, perhaps return an appropriate response to the client
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update product"})

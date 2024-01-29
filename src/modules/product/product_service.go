@@ -4,8 +4,8 @@ package product
 type IProductService interface {
 	FindAll() ([]Product, error)
 	FindByID(ID int) (Product, error)
-	Create(product SProductRequest) (Product, error)
-	Update(ID int, product Product) (Product, error)
+	Create(productRequest SProductRequest) (Product, error)
+	Update(ID int, productRequest SProductRequest) (Product, error)
 	Destroy(ID int) (Product, error)
 }
 
@@ -46,7 +46,7 @@ func (s *SProductService) Create(productRequest SProductRequest) (Product, error
 }
 
 // Update updates a product by ID.
-func (s *SProductService) Update(ID int, product Product) (Product, error) {
+func (s *SProductService) Update(ID int, productRequest SProductRequest) (Product, error) {
 	// Check if the product with the given ID exists
 	existingProduct, err := s.productRepository.FindByID(ID)
 	if err != nil {
@@ -54,25 +54,19 @@ func (s *SProductService) Update(ID int, product Product) (Product, error) {
 	}
 
 	// Perform any validation or business logic before updating (if needed)
+	qty, _ := productRequest.Qty.Float64()
+	price, _ := productRequest.Price.Float64()
 
 	// Update the existing product with the new data
-	existingProduct.Name = product.Name
-	existingProduct.Description = product.Description
-	existingProduct.Qty = product.Qty
-	existingProduct.Price = product.Price
+	existingProduct.Name = productRequest.Name
+	existingProduct.Description = productRequest.Description
+	existingProduct.Qty = int(qty)
+	existingProduct.Price = int(price)
 	// Update other fields as needed
 
 	// Call the repository's Update method
 	updatedProduct, err := s.productRepository.Update(existingProduct)
-	if err != nil {
-		return Product{}, err
-	}
-
-	return updatedProduct, nil
-
-	// The simple way
-	//product, _ := s.SProductRepository.FindByID(ID)
-	//return s.productRepository.Update(product)
+	return updatedProduct, err
 }
 
 // Destroy adds a new product.

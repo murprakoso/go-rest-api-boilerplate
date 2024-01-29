@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fc907e9-b57d-40fe-a32c-dc5d772e7cd4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_module.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_response.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commons/core/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/core/response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commons/middleware/validate_id_param.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/middleware/validate_id_param.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commons/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/seeder.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/seeder.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/product/product_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/product/product_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/product/product_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/product/product_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
