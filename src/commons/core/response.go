@@ -15,3 +15,12 @@ func ResponseJSON(c *gin.Context, statusCode int, success bool, message string, 
 		"data":    data,
 	})
 }
+
+func ResponsePaginate(c *gin.Context, statusCode int, success bool, message string, data interface{}, meta PaginationMeta) {
+	c.JSON(statusCode, gin.H{
+		"success": success,
+		"message": message,
+		"data":    data,
+		"meta":    meta,
+	})
+}

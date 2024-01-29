@@ -17,13 +17,15 @@ func NewUnitHandler(unitService IUnitService) *SUnitHandler {
 
 // ShowUnits handles the HTTP GET request to retrieve all units.
 func (h *SUnitHandler) ShowUnits(c *gin.Context) {
-	units, err := h.unitService.FindAll()
+	paginationQuery := core.ParsePaginationQuery(c)
+
+	units, meta, err := h.unitService.FindAll(paginationQuery)
 	if err != nil {
 		core.ResponseError(c, http.StatusInternalServerError, "Invalid request payload")
 		return
 	}
 
-	core.ResponseJSON(c, http.StatusOK, true, "", NewUnitListResponseFromEntity(units))
+	core.ResponsePaginate(c, http.StatusOK, true, "", NewUnitListResponseFromEntity(units), meta)
 }
 
 // ShowUnit handles the HTTP GET request to retrieve a single unit by ID.
