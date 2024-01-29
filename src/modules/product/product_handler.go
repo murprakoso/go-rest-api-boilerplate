@@ -108,8 +108,15 @@ func (h *SProductHandler) UpdateProduct(c *gin.Context) {
 		return
 	}
 
+	// Map the created product to a response format
+	productResponse := NewProductDetailResponseFromEntity(updatedProduct)
+
 	// Handle the updated product, perhaps return it as a JSON response to the client
-	c.JSON(http.StatusOK, updatedProduct)
+	// Respond with the updated product details
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"data":    productResponse,
+	})
 }
 
 // DestroyProduct remove a data record

@@ -70,6 +70,7 @@ func (s *SProductService) Update(ID int, product Product) (Product, error) {
 
 	return updatedProduct, nil
 
+	// The simple way
 	//product, _ := s.SProductRepository.FindByID(ID)
 	//return s.productRepository.Update(product)
 }
