@@ -4,7 +4,7 @@ package product
 type IProductService interface {
 	FindAll() ([]Product, error)
 	FindByID(ID int) (Product, error)
-	Create(product Product) (Product, error)
+	Create(product SProductRequest) (Product, error)
 	Update(ID int, product Product) (Product, error)
 	Destroy(ID int) (Product, error)
 }
@@ -31,8 +31,18 @@ func (s *SProductService) FindByID(ID int) (Product, error) {
 }
 
 // Create adds a new product.
-func (s *SProductService) Create(product Product) (Product, error) {
-	return s.productRepository.Create(product)
+func (s *SProductService) Create(productRequest SProductRequest) (Product, error) {
+	qty, _ := productRequest.Qty.Float64()
+	price, _ := productRequest.Price.Float64()
+
+	product := Product{
+		Name:        productRequest.Name,
+		Description: productRequest.Description,
+		Qty:         int(qty),
+		Price:       int(price),
+	}
+	createdProduct, err := s.productRepository.Create(product)
+	return createdProduct, err
 }
 
 // Update updates a product by ID.

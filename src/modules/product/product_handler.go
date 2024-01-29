@@ -56,21 +56,32 @@ func (h *SProductHandler) ShowProduct(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": productDetailResponse})
 }
 
-// CreateProduct create
+// CreateProduct handles the HTTP POST request to create a new product.
 func (h *SProductHandler) CreateProduct(c *gin.Context) {
-	var product Product
-	if err := c.ShouldBindJSON(&product); err != nil {
+	// Parse request body into SProductRequest struct
+	var productRequest SProductRequest
+	if err := c.ShouldBindJSON(&productRequest); err != nil {
+		// If the request payload is invalid, respond with a Bad Request error
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
 		return
 	}
 
-	createdProduct, err := h.productService.Create(product)
+	// Create the product using ProductService
+	createdProduct, err := h.productService.Create(productRequest)
 	if err != nil {
+		// If there's an error while creating the product, respond with an Internal Server Error
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create product"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, createdProduct)
+	// Map the created product to a response format
+	productResponse := NewProductDetailResponseFromEntity(createdProduct)
+
+	// Respond with the created product details
+	c.JSON(http.StatusCreated, gin.H{
+		"success": true,
+		"data":    productResponse,
+	})
 }
 
 // UpdateProduct handles the request to update a product.
