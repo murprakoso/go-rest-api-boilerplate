@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	commons "go-rest-api-boilerplate/src/commons/config"
+	"go-rest-api-boilerplate/src/commons/core"
 	"go-rest-api-boilerplate/src/commons/routers"
 	"log"
 )
@@ -26,6 +27,9 @@ func App() {
 
 	// Initialize the router
 	router := routers.Router()
+
+	// Initialize the setup CORS
+	router.Use(core.SetupCors())
 
 	// Run the server on port 8080
 	err := router.Run(fmt.Sprintf(":%s", config.Port))
