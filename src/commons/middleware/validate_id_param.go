@@ -10,10 +10,13 @@ import (
 func ValidateIDParamMiddleware(paramName string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		paramValue := c.Param(paramName)
-		if err := ValidateID(paramName, paramValue); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			c.Abort()
-			return
+		// Periksa apakah parameter ada
+		if paramValue != "" {
+			if err := ValidateID(paramName, paramValue); err != nil {
+				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+				c.Abort()
+				return
+			}
 		}
 
 		c.Next()

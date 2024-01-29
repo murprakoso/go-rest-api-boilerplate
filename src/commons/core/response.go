@@ -8,6 +8,10 @@ func ResponseError(c *gin.Context, statusCode int, message string) {
 }
 
 // ResponseJSON sends a JSON response with the specified status code and data.
-func ResponseJSON(c *gin.Context, statusCode int, data interface{}) {
-	c.JSON(statusCode, data)
+func ResponseJSON(c *gin.Context, statusCode int, success bool, message string, data interface{}) {
+	c.JSON(statusCode, gin.H{
+		"success": success,
+		"message": message,
+		"data":    data,
+	})
 }

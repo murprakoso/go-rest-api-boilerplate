@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-rest-api-boilerplate/src/commons/middleware"
 	"go-rest-api-boilerplate/src/modules/product"
+	"go-rest-api-boilerplate/src/modules/unit"
 )
 
 func Router() *gin.Engine {
@@ -33,6 +34,7 @@ func Router() *gin.Engine {
 
 	// Import the product module
 	product.InitProductModule()
+	unit.InitUnitModule()
 
 	// List of imported and configured router groups (add new router groups here)
 	//
@@ -41,6 +43,7 @@ func Router() *gin.Engine {
 
 	// Import and configure the product routes within the v1 group
 	product.SetProductRouterGroup(v1)
+	unit.SetUnitRouterGroup(v1)
 
 	return router
 }

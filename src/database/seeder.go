@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go-rest-api-boilerplate/src/commons/core"
 	"go-rest-api-boilerplate/src/modules/product"
+	"go-rest-api-boilerplate/src/modules/unit"
 	"log"
 )
 
@@ -18,6 +19,7 @@ func Seeder() {
 func AutoMigration() {
 	entities := []interface{}{
 		&product.Product{},
+		&unit.Unit{},
 		// Add other entities here if any
 	}
 

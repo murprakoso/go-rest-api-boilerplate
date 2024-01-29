@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fc907e9-b57d-40fe-a32c-dc5d772e7cd4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/commons/core/response.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commons/middleware/validate_id_param.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_entity.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_module.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_repository.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_request.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_response.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/unit/unit_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commons/core/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/core/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commons/middleware/validate_id_param.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/middleware/validate_id_param.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commons/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/commons/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/product/product_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/product/product_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/seeder.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/seeder.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,15 +61,17 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "/home/althea/GolandProjects/go-rest-api-boilerplate/src/modules/product",
+    "last_opened_file_path": "/home/althea/GolandProjects/go-rest-api-boilerplate/src/modules/unit",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors"
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/unit" />
       <recent name="$PROJECT_DIR$/src/modules/product" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
