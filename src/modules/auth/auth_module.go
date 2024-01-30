@@ -2,6 +2,7 @@ package auth
 
 import (
 	"github.com/gin-gonic/gin"
+	"go-rest-api-boilerplate/src/commons/middleware"
 	"gorm.io/gorm"
 )
 
@@ -16,4 +17,5 @@ func InitRouterGroup(router *gin.RouterGroup, db *gorm.DB) {
 	// Init Router
 	router.POST("/register", authHandler.Register)
 	router.POST("/login", authHandler.Login)
+	router.GET("/validate", middleware.RequireAuth, authHandler.Validate)
 }

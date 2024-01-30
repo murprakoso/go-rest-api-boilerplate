@@ -11,6 +11,7 @@ import (
 type IAuthService interface {
 	Register(registerRequest SRegisterRequest) (User, error)
 	Login(loginRequest SLoginRequest) (User, string, error)
+	FindByUsername(username string) (User, error)
 }
 
 type SAuthService struct {
@@ -54,6 +55,11 @@ func (s *SAuthService) Login(loginRequest SLoginRequest) (User, string, error) {
 	}
 
 	return user, token, err
+}
+
+func (s *SAuthService) FindByUsername(username string) (User, error) {
+	user, err := s.authRepository.FindByUsername(username)
+	return user, err
 }
 
 func generateToken(ID int, username string) (string, error) {
