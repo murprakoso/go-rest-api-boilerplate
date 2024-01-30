@@ -30,6 +30,9 @@ func (r *SUnitRepository) FindAll(paginationQuery core.PaginationQuery) ([]Unit,
 	// Add search condition if search parameter is provided
 	if paginationQuery.Search != "" {
 		query = query.Where("name LIKE ?", "%"+paginationQuery.Search+"%")
+		// Gunakan Or untuk menambahkan kondisi pencarian pada kolom name atau description
+		//query = query.Where("name LIKE ?", "%"+paginationQuery.Search+"%").
+		//	Or("description LIKE ?", "%"+paginationQuery.Search+"%")
 	}
 
 	// Add order by and sort by conditions
@@ -39,6 +42,13 @@ func (r *SUnitRepository) FindAll(paginationQuery core.PaginationQuery) ([]Unit,
 	if err := r.db.Model(&Unit{}).Where("name LIKE ?", "%"+paginationQuery.Search+"%").Count(&total).Error; err != nil {
 		return nil, 0, err
 	}
+	// Count total number of records (Jika menggunakan kondisi Or)
+	//if err := r.db.Model(&Unit{}).
+	//	Where("name LIKE ?", "%"+paginationQuery.Search+"%").
+	//	Or("description LIKE ?", "%"+paginationQuery.Search+"%").
+	//	Count(&total).Error; err != nil {
+	//	return nil, 0, err
+	//}
 
 	err := query.Find(&units).Error
 	return units, int(total), err
