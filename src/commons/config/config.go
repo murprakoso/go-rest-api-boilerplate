@@ -8,13 +8,14 @@ import (
 
 // Config struct holds the configuration values.
 type Config struct {
-	EnvMode string
-	Port    string
-	DBHost  string
-	DBPort  string
-	DBUser  string
-	DBPass  string
-	DBName  string
+	EnvMode   string
+	Port      string
+	DBHost    string
+	DBPort    string
+	DBUser    string
+	DBPass    string
+	DBName    string
+	JwtSecret string
 }
 
 // LoadConfig loads the configuration values from the .env file.
@@ -25,13 +26,14 @@ func LoadConfig() *Config {
 	}
 
 	return &Config{
-		EnvMode: getEnv("GIN_MODE", "debug"), // "debug" / "release"
-		Port:    getEnv("PORT", "8080"),
-		DBHost:  getEnv("DB_HOST", "127.0.0.1"),
-		DBPort:  getEnv("DB_PORT", "3306"),
-		DBUser:  getEnv("DB_USER", "root"),
-		DBPass:  getEnv("DB_PASS", ""),
-		DBName:  getEnv("DB_NAME", ""),
+		EnvMode:   getEnv("GIN_MODE", "debug"), // "debug" / "release"
+		Port:      getEnv("PORT", "8080"),
+		DBHost:    getEnv("DB_HOST", "127.0.0.1"),
+		DBPort:    getEnv("DB_PORT", "3306"),
+		DBUser:    getEnv("DB_USER", "root"),
+		DBPass:    getEnv("DB_PASS", ""),
+		DBName:    getEnv("DB_NAME", ""),
+		JwtSecret: getEnv("JWT_SECRET", "secret"),
 	}
 }
 

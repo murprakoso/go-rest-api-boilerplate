@@ -2,7 +2,9 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
+	"go-rest-api-boilerplate/src/commons/core"
 	"go-rest-api-boilerplate/src/commons/middleware"
+	"go-rest-api-boilerplate/src/modules/auth"
 	"go-rest-api-boilerplate/src/modules/product"
 	"go-rest-api-boilerplate/src/modules/unit"
 )
@@ -44,6 +46,7 @@ func Router() *gin.Engine {
 	// Import and configure the product routes within the v1 group
 	product.SetProductRouterGroup(v1)
 	unit.SetUnitRouterGroup(v1)
+	auth.InitRouterGroup(v1, core.DB)
 
 	return router
 }

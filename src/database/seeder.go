@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"go-rest-api-boilerplate/src/commons/core"
+	"go-rest-api-boilerplate/src/modules/auth"
 	"go-rest-api-boilerplate/src/modules/product"
 	"go-rest-api-boilerplate/src/modules/unit"
 	"log"
@@ -20,6 +21,7 @@ func AutoMigration() {
 	entities := []interface{}{
 		&product.Product{},
 		&unit.Unit{},
+		&auth.User{},
 		// Add other entities here if any
 	}
 
