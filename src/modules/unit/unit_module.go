@@ -2,18 +2,16 @@ package unit
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-rest-api-boilerplate/src/commons/core"
+	"gorm.io/gorm"
 )
 
 var unitHandler *SUnitHandler
 
-func InitUnitModule() {
-	unitRepository := NewUnitRepository(core.DB)
+func InitRouterGroup(router *gin.RouterGroup, db *gorm.DB) {
+	unitRepository := NewUnitRepository(db)
 	unitService := NewUnitService(unitRepository)
 	unitHandler = NewUnitHandler(unitService)
-}
 
-func SetUnitRouterGroup(router *gin.RouterGroup) {
 	router.GET("/unit", unitHandler.ShowUnits)
 	router.GET("/unit/:id", unitHandler.ShowUnit)
 	router.POST("/unit", unitHandler.CreateUnit)

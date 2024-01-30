@@ -2,18 +2,18 @@ package product
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-rest-api-boilerplate/src/commons/core"
+	"gorm.io/gorm"
 )
 
 var productHandler *SProductHandler
 
-func InitProductModule() {
-	productRepository := NewProductRepository(core.DB)
+func InitRouterGroup(router *gin.RouterGroup, db *gorm.DB) {
+	// Init Module
+	productRepository := NewProductRepository(db)
 	productService := NewProductService(productRepository)
 	productHandler = NewProductHandler(productService)
-}
 
-func SetProductRouterGroup(router *gin.RouterGroup) {
+	// Init Route
 	router.GET("/product", productHandler.ShowProducts)
 	router.GET("/product/:id", productHandler.ShowProduct)
 	router.POST("/product", productHandler.CreateProduct)

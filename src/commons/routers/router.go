@@ -29,23 +29,14 @@ func Router() *gin.Engine {
 		c.JSON(200, gin.H{"message": "Welcome to the V1 API!"})
 	})
 
-	// List of imported modules (add new modules here)
-	//
-	// Imported Modules:
-	// - product
-
-	// Import the product module
-	product.InitProductModule()
-	unit.InitUnitModule()
-
 	// List of imported and configured router groups (add new router groups here)
 	//
 	// Imported Router Groups:
 	// - product.SetProductRouterGroup(v1)
 
 	// Import and configure the product routes within the v1 group
-	product.SetProductRouterGroup(v1)
-	unit.SetUnitRouterGroup(v1)
+	product.InitRouterGroup(v1, core.DB)
+	unit.InitRouterGroup(v1, core.DB)
 	auth.InitRouterGroup(v1, core.DB)
 
 	return router
